@@ -1,6 +1,7 @@
 # Project Overview
 
 Welcome to Drone Photography Log! A fullstack web application providing organized drone flight data such as images taken, altitude, and battery life. Users can easily find information on their latest drone's flights. 
+
 [View our website]()
 
 ## Project Planning
