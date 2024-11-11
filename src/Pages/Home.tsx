@@ -137,13 +137,15 @@ function Home() {
         <div id='table-div'>
           <table>
             <tr key={"header"}>
+              {/* maps through droneData's objects and returns a row for each object. Then maps through the objects' values and returns them as <td> elements */}
               {Object.keys(droneData[0]).map((key) => (
                 <th>{key}</th>
               ))}
             </tr>
-            {droneData.map((item) => (
-              <tr key={item.image_id}>
-                {Object.values(item).map((val) => (
+            {/* maps through droneData's first object's keys and displays them as table headers */}
+            {droneData.map((obj) => (
+              <tr key={obj.image_id}>
+                {Object.values(obj).map((val) => (
                   <td>{val}</td>
                 ))}
               </tr>
