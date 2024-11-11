@@ -1,6 +1,9 @@
 import '../styles/Home.css'
+import { useState } from 'react'
 
 function Home() {
+
+  const [searchQuery, setSearchQuery] = useState('');
 
   const droneData = [
     {
@@ -120,15 +123,46 @@ function Home() {
     }
   ]
 
+
+// this function GETs all data from the backend, by sending searchQuery on the request body
+const getAllData = async (searchQuery: any) => {
+  try {
+    const response = await fetch('http://localhost:3000/');
+    const result = await response.json();
+    console.log('result: ', result);
+    const allDroneData = result;
+    console.log(`Our allDroneData: ${allDroneData}`);
+    return allDroneData;
+  }
+  catch (error: any) {
+    console.log('error', error);
+  }
+};
+
+//this function sets the current value of the search bar to a state variable called searchQuery
+const handleInputChange = (event: any) => {
+  event.preventDefault();
+  setSearchQuery(event.target.value);
+}
+
+//this function submits the searchQuery to the server and calls getAllData() which populates all of the data as the response in the h2
+const handleSubmit = (event: any) => {
+  event.preventDefault();
+  console.log(`you hit search with the following query: ${searchQuery}`)
+  getAllData(searchQuery);
+};
+
+
   return (
     <>
       <div id='outer-div'>
+
         <h1>Drone Photography Log</h1>
-        <p>Welcome to the Drone Photography Log, where you can see all the images your drone has taken.</p>
+        <p>Welcome to the Drone Photography Log, where you can see data about the images your drone has taken.</p>
         <p>To access specific data about each image, ask a question like "What is the battery level of the drone during the last image?" and hit search.</p>
-        
-        <form className="query-form">
-          <input id='query-field' type="text" placeholder="What is the battery level of the drone during the last image?" name="search" />
+
+        <form className="query-form" onSubmit={handleSubmit} >
+          <input id='query-field' type="text" onChange={handleInputChange} placeholder="What is the battery level of the drone during the last image?" name="search" />
           <button id='search-button' type="submit">Search</button>
         </form>
 
@@ -137,13 +171,15 @@ function Home() {
         <div id='table-div'>
           <table>
             <tr key={"header"}>
+              {/* maps through droneData's objects and returns a row for each object. Then maps through the objects' values and returns them as <td> elements */}
               {Object.keys(droneData[0]).map((key) => (
                 <th>{key}</th>
               ))}
             </tr>
-            {droneData.map((item) => (
-              <tr key={item.image_id}>
-                {Object.values(item).map((val) => (
+            {/* maps through droneData's first object's keys and displays them as table headers */}
+            {droneData.map((obj) => (
+              <tr key={obj.image_id}>
+                {Object.values(obj).map((val) => (
                   <td>{val}</td>
                 ))}
               </tr>
