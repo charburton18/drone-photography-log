@@ -163,20 +163,25 @@ function Home() {
     <>
       <div id='outer-div'>
 
-        <h1>Drone Photography Log</h1>
-        <p>Welcome to the Drone Photography Log, where you can see data about the images your drone has taken.</p>
-        <p>To access specific data about each image, ask a question like "What is the battery level of the drone during the last image?" and hit search.</p>
+        <div id='header-div'>
+          <h1>Drone Photography Log</h1>
+        </div>
+
+        <div id='p-div'>
+          <p className='p-div-p'>Welcome to the Drone Photography Log, where you can learn about the images your drone has taken.</p>
+          <p className='p-div-p'>Ask for specific data, and then press search.</p>
+        </div>
 
         <form className="query-form" onSubmit={handleSubmit} >
           <input id='query-field' type="text" onChange={handleInputChange} placeholder="What is the battery level of the drone during the last image?" name="search" />
-          <button id='search-button' type="submit">Search</button>
+          <button id='search-button' className='button-18' type="submit">Search</button>
         </form>
 
         <h2 id='response'>The answer to your question is: {answer}</h2>
 
         <div id='table-div'>
-          <table>
-            <tr key={"header"}>
+          <table className='styled-table'>
+            <tr key={"header"} className='active-row'>
               {/* maps through droneData's objects and returns a row for each object. Then maps through the objects' values and returns them as <td> elements */}
               {Object.keys(droneData[0]).map((key) => (
                 <th>{key}</th>
@@ -184,7 +189,7 @@ function Home() {
             </tr>
             {/* maps through droneData's first object's keys and displays them as table headers */}
             {droneData.map((obj) => (
-              <tr key={obj.image_id}>
+              <tr key={obj.image_id} className='active-row'>
                 {Object.values(obj).map((val) => (
                   <td>{val}</td>
                 ))}
