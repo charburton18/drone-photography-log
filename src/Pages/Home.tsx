@@ -3,7 +3,8 @@ import { useState } from 'react'
 
 function Home() {
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<any>('');
+  const [answer, setAnswer] = useState<string | number>('');
 
   const droneData = [
     {
@@ -123,35 +124,40 @@ function Home() {
     }
   ]
 
+  // this function GETs all data from the backend, by sending searchQuery on the request body. It also generates a random number as the answer and displays it.
+  const getAllData = async (searchQuery: any) => {
+    try {
+      const response = await fetch('http://localhost:3000/');
+      const result = await response.json();
+      const allDroneData = result;
+      console.log(`Drone data received from the backend:`, allDroneData);
+      generateARandomAnswer(allDroneData);
+      return allDroneData;
+    }
+    catch (error: any) {
+      console.log('error', error);
+    }
+  };
 
-// this function GETs all data from the backend, by sending searchQuery on the request body
-const getAllData = async (searchQuery: any) => {
-  try {
-    const response = await fetch('http://localhost:3000/');
-    const result = await response.json();
-    console.log('result: ', result);
-    const allDroneData = result;
-    console.log(`Our allDroneData: ${allDroneData}`);
-    return allDroneData;
+  // Answer Logic: return a random object value and set it to the state variable called answer
+  const generateARandomAnswer = (data: object) => {
+    // const randomAnswer = (Object.values(Object.values(data)[Math.floor(Math.random() * 5)]))[Math.floor(Math.random() * 21)]; // a random value from the data
+    const randomAnswer = Math.floor(Math.random() * 101); // generates a random number from 0 to 100 inclusive
+    setAnswer(randomAnswer);
   }
-  catch (error: any) {
-    console.log('error', error);
+
+  //this function sets the current value of the search bar to a state variable called searchQuery
+  const handleInputChange = (event: any) => {
+    event.preventDefault();
+    setSearchQuery(event.target.value);
   }
-};
 
-//this function sets the current value of the search bar to a state variable called searchQuery
-const handleInputChange = (event: any) => {
-  event.preventDefault();
-  setSearchQuery(event.target.value);
-}
-
-//this function submits the searchQuery to the server and calls getAllData() which populates all of the data as the response in the h2
-const handleSubmit = (event: any) => {
-  event.preventDefault();
-  console.log(`you hit search with the following query: ${searchQuery}`)
-  getAllData(searchQuery);
-};
-
+  //this function submits the searchQuery to the server and calls getAllData() which populates all of the data as the response in the h2
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    console.log(`You submitted the following query: ${searchQuery}`)
+    getAllData(searchQuery);
+  };
 
   return (
     <>
@@ -166,7 +172,7 @@ const handleSubmit = (event: any) => {
           <button id='search-button' type="submit">Search</button>
         </form>
 
-        <h2 id='response'>The answer to your question will go here</h2>
+        <h2 id='response'>The answer to your question is: {answer}</h2>
 
         <div id='table-div'>
           <table>
