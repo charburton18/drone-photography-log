@@ -177,7 +177,7 @@ function Home() {
           <button id='search-button' className='button-18' type="submit">Search</button>
         </form>
 
-        <h2 id='response'>The answer to your question is: {answer}</h2>
+        {answer && <h2 id='response'>The answer to your question is: {answer}</h2>}
 
         <div id='table-div'>
           <table className='styled-table'>
