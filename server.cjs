@@ -124,6 +124,7 @@ const droneDataFromBackend = {
 
 // enables CORS on the entire server
 app.use(cors());
+
 // uses middleware on the '/' route
 app.use('/', router);
 
@@ -134,8 +135,20 @@ router.get('/', cors(), async (req, res) => {
       droneDataFromBackend
     });
   } catch (error) {
-      console.error(error);
-      res.status(500).send({ message: 'Failed to retrieve drone data', error: error.message });
+    console.error(error);
+    res.status(500).send({ message: 'Failed to retrieve drone data', error: error.message });
+  }
+})
+
+// defines a route handler for a POST request to the '/' endpoint
+router.post('/', cors(), async (req, res) => {
+  try {
+    res.json(
+      droneDataFromBackend.item_5.battery_level_pct
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'Failed to retrieve data from the POST request', error: error.message });
   }
 })
 
