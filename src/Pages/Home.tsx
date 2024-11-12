@@ -4,6 +4,7 @@ function Home() {
 
   const [searchQuery, setSearchQuery] = useState<any>('');
   const [answer, setAnswer] = useState<string | number>('');
+  const [dataset, setDataset] = useState<object>({});
 
   const droneData = [
     {
@@ -123,27 +124,21 @@ function Home() {
     }
   ]
 
-  // this function GETs all data from the backend, by sending searchQuery on the request body. It also generates a random number as the answer and displays it.
-  const getAllData = async (searchQuery: any) => {
+  // this function GETs all data from the backend and saves it in the state variable called dataset.
+  const getAllData = async () => {
     try {
       const response = await fetch('http://localhost:3000/');
       const result = await response.json();
       const allDroneData = result;
       console.log(`Drone data received from the backend:`, allDroneData);
-      generateARandomAnswer(allDroneData);
-      return allDroneData;
+      setDataset(allDroneData);
+      console.log(`Drone data saved as the state variable dataset:`, dataset)
+      return;
     }
     catch (error: any) {
       console.log('error', error);
     }
   };
-
-  // Answer Logic: return a random object value and set it to the state variable called answer
-  const generateARandomAnswer = (data: object) => {
-    // const randomAnswer = (Object.values(Object.values(data)[Math.floor(Math.random() * 5)]))[Math.floor(Math.random() * 21)]; // a random value from the data
-    const randomAnswer = Math.floor(Math.random() * 101); // generates a random number from 0 to 100 inclusive
-    setAnswer(randomAnswer);
-  }
 
   //this function sets the current value of the search bar to a state variable called searchQuery
   const handleInputChange = (event: any) => {
@@ -155,7 +150,7 @@ function Home() {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     console.log(`You submitted the following query: ${searchQuery}`)
-    getAllData(searchQuery);
+    getAllData();
   };
 
   return (

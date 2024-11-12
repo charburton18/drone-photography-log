@@ -139,6 +139,13 @@ router.get('/', cors(), async (req, res) => {
   }
 })
 
+// // Answer Logic: return a random object value and set it to the state variable called answer
+// const generateARandomAnswer = (data: object) => {
+//   // const randomAnswer = (Object.values(Object.values(data)[Math.floor(Math.random() * 5)]))[Math.floor(Math.random() * 21)]; // a random value from the data
+//   const randomAnswer = Math.floor(Math.random() * 101); // generates a random number from 0 to 100 inclusive
+//   setAnswer(randomAnswer);
+// }
+
 // starts the server, makes the server listen for incoming requests on the specified port
 app.listen(port, () => {
   console.log(`CORS-enabled web server listening on port ${port}`)
