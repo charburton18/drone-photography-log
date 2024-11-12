@@ -132,7 +132,29 @@ function Home() {
       const allDroneData = result;
       console.log(`Drone data received from the backend:`, allDroneData);
       setDataset(allDroneData);
-      console.log(`Drone data saved as the state variable dataset:`, dataset)
+      return;
+    }
+    catch (error: any) {
+      console.log('error', error);
+    }
+  };
+
+  // this function POSTs the searchQuery to the backend and saves the response in the state variable called answer.
+  const postQueryForAnswer = async () => {
+    const options: object = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(searchQuery)
+    };
+    try {
+      const response = await fetch('http://localhost:3000/', options);
+      const result = await response.json();
+      console.log(`Result received from the backend:`, result);
+      const answerFromBackend = result;
+      console.log(`Answer received from the backend:`, answerFromBackend);
+      setAnswer(answerFromBackend);
       return;
     }
     catch (error: any) {
@@ -150,7 +172,7 @@ function Home() {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     console.log(`You submitted the following query: ${searchQuery}`)
-    getAllData();
+    postQueryForAnswer();
   };
 
   return (
