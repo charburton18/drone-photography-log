@@ -2,7 +2,7 @@
 
 Welcome to Drone Photography Log! A fullstack web application providing organized drone flight data such as images taken, altitude, and battery life. Users can easily find information on their latest drone's flights. 
 
-[View our website]()
+[View this repo live](https://drone-photography-log-frontend.onrender.com/)
 
 ## Project Planning
 
@@ -12,17 +12,16 @@ View how the project was planned through the [Google Planning Doc](https://docs.
 
 This project makes use of:
 
-- HTML/CSS/TypeScript
-- React
+- Vite (`react-ts` template)
 - Express
-- Vite.js
 
 # Environment Setup
 
-If you would like to have a copy of Drone Photography Log on your local computer to run in your IDE and experiment with, follow these steps:
+This repo has two servers, a frontend and a backend. The backend serves drone data to the frontend.
 
-1. Create a clone of the repository https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
-2. Download node.js (version 20.18.0) if you do not already have it installed https://nodejs.org/en/download/package-manager
-3. In your terminal, navigate to the root file of the repo and run the command `npm install`
-4. Then start the Express server by running the command `node server.cjs`
-5. To run the code on your local web browser, use the command `npm run dev`
+> [!IMPORTANT]
+> Requires Node v20.18.0
+
+1. Duplicate `.env.sample` into `.env`
+2. Start the backend server: `node server.cjs`
+3. Start the frontend server: `npm run dev`
