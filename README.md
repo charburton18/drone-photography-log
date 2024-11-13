@@ -4,6 +4,8 @@ Welcome to Drone Photography Log! A fullstack web application providing organize
 
 [View this repo live](https://drone-photography-log-frontend.onrender.com/)
 
+![Screenshot 2024-11-13 at 2 02 28 PM](https://github.com/user-attachments/assets/783ff24a-3a03-49fd-bf13-f432292327b3)
+
 ## Project Planning
 
 View how the project was planned through the [Google Planning Doc](https://docs.google.com/document/d/1z8WfwRlrczTnvaDykFaJUrmUjvzvVBWktauOba8u2zc/edit?usp=sharing).
