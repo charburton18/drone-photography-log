@@ -127,7 +127,7 @@ function Home() {
   // this function GETs all data from the backend and saves it in the state variable called dataset.
   const getAllData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/');
+      const response = await fetch(import.meta.env.VITE_DATA_SERVER_URL);
       const result = await response.json();
       const allDroneData = result;
       console.log(`Drone data received from the backend:`, allDroneData);
@@ -149,7 +149,7 @@ function Home() {
       body: JSON.stringify(searchQuery)
     };
     try {
-      const response = await fetch('http://localhost:3000/', options);
+      const response = await fetch(import.meta.env.VITE_DATA_SERVER_URL, options);
       const result = await response.json();
       console.log(`Result received from the backend:`, result);
       const answerFromBackend = result;
