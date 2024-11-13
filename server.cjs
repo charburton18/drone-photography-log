@@ -123,13 +123,16 @@ const droneDataFromBackend = {
 }
 
 // enables CORS on the entire server
-app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:5173', 'https://drone-photography-log-frontend.onrender.com']
+}
+app.use(cors(corsOptions));
 
 // uses middleware on the '/' route
 app.use('/', router);
 
 // defines a route handler for a GET request to the '/' endpoint
-router.get('/', cors(), async (req, res) => {
+router.get('/', cors(corsOptions), async (req, res) => {
   try {
     res.send({
       droneDataFromBackend
@@ -141,7 +144,7 @@ router.get('/', cors(), async (req, res) => {
 })
 
 // defines a route handler for a POST request to the '/' endpoint
-router.post('/', cors(), async (req, res) => {
+router.post('/', cors(corsOptions), async (req, res) => {
   try {
     res.json(
       droneDataFromBackend.item_5.battery_level_pct
