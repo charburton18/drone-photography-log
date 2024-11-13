@@ -4,6 +4,7 @@ function Home() {
 
   const [searchQuery, setSearchQuery] = useState<any>('');
   const [answer, setAnswer] = useState<string | number>('');
+  const [dataset, setDataset] = useState<object>({});
 
   const droneData = [
     {
@@ -122,6 +123,21 @@ function Home() {
       "image_tags": ["Thermal Pool", "Bacteria"]
     }
   ]
+
+  // this function GETs all data from the backend and saves it in the state variable called dataset.
+  const getAllData = async () => {
+    try {
+      const response = await fetch(import.meta.env.VITE_DATA_SERVER_URL);
+      const result = await response.json();
+      const allDroneData = result;
+      console.log(`Drone data received from the backend:`, allDroneData);
+      setDataset(allDroneData);
+      return;
+    }
+    catch (error: any) {
+      console.log('error', error);
+    }
+  };
 
   // this function POSTs the searchQuery to the backend and saves the response in the state variable called answer.
   const postQueryForAnswer = async () => {
