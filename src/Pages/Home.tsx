@@ -3,7 +3,7 @@ import { useState } from 'react'
 function Home() {
 
   const [searchQuery, setSearchQuery] = useState<any>('');
-  const [answer, setAnswer] = useState<string | number>('');
+  const [answer, setAnswer] = useState<any>('');
 
   const droneData = [
     {
@@ -135,7 +135,6 @@ function Home() {
     try {
       const response = await fetch(import.meta.env.VITE_DATA_SERVER_URL, options);
       const result = await response.json();
-      console.log(`Result received from the backend:`, result);
       const answerFromBackend = result;
       console.log(`Answer received from the backend:`, answerFromBackend);
       setAnswer(answerFromBackend);
