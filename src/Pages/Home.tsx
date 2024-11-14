@@ -3,7 +3,7 @@ import { useState } from 'react'
 function Home() {
 
   const [searchQuery, setSearchQuery] = useState<any>('');
-  const [answer, setAnswer] = useState<any>('');
+  const [answer, setAnswer] = useState('');
 
   const droneData = [
     {
@@ -176,7 +176,7 @@ function Home() {
           <button id='search-button' className='button-18' type="submit">Search</button>
         </form>
 
-        {answer && <h2 id='response'>The answer to your question is: {answer}</h2>}
+        {JSON.stringify(answer) && <h2 id='response'>The answer to your question is: {answer}</h2>}
 
         <div id='table-div'>
           <table className='styled-table'>
