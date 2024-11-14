@@ -5,7 +5,7 @@ Welcome to Drone Photography Log! A fullstack web application providing organize
 [View this repo live](https://drone-photography-log-frontend.onrender.com/)
 
 > [!IMPORTANT]
-> At this time, typing in any query will result in the answer "82" which being pulled from the backend data.
+> At this time, typing in any query will result in a random piece of data being pulled from the backend data.
 
 ![Screenshot 2024-11-13 at 2 02 28 PM](https://github.com/user-attachments/assets/783ff24a-3a03-49fd-bf13-f432292327b3)
 
