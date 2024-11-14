@@ -131,6 +131,12 @@ app.use(cors(corsOptions));
 // uses middleware on the '/' route
 app.use('/', router);
 
+// this function returns a random value from the droneDataFromBackend
+const generateARandomAnswer = (data) => {
+  const randomAnswer = (Object.values(Object.values(data)[Math.floor(Math.random() * 5)]))[Math.floor(Math.random() * 21)]; // a random value from the data
+  return randomAnswer;
+}
+
 // defines a route handler for a GET request to the '/' endpoint
 router.get('/', cors(corsOptions), async (req, res) => {
   try {
@@ -147,7 +153,7 @@ router.get('/', cors(corsOptions), async (req, res) => {
 router.post('/', cors(corsOptions), async (req, res) => {
   try {
     res.json(
-      droneDataFromBackend.item_5.battery_level_pct
+      generateARandomAnswer(droneDataFromBackend)
     );
   } catch (error) {
     console.error(error);
