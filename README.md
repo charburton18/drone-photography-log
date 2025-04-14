@@ -6,6 +6,7 @@ Welcome to Drone Photography Log! A fullstack web application providing organize
 
 > [!IMPORTANT]
 > At this time, typing in any query will result in a random piece of data being pulled from the backend data.
+> If the website has not been used in a while, the first query can take about 30 seconds before an answer is displayed on the page.
 
 ![Screenshot 2024-11-13 at 2 02 28 PM](https://github.com/user-attachments/assets/783ff24a-3a03-49fd-bf13-f432292327b3)
 
